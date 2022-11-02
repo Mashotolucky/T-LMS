@@ -13,6 +13,4 @@ const pool = new Pool({
   ssl: isProduction ? { rejectUnauthorized: false }: false,
 });
 
-module.exports = {
-  pool
-};
+module.exports = {pool}

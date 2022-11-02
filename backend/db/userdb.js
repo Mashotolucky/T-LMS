@@ -1,7 +1,7 @@
-const Pool = require('../config/dbconfig');
+const {pool} = require('../config/dbconfig');
 
 const addUserDb = async (Password) =>{
-    const User = Pool.query(
+    const User = await pool.query(
         `INSERT INTO Users(Password)
          VALUES($1)
          RETURNING * `,[Password]
@@ -11,7 +11,7 @@ const addUserDb = async (Password) =>{
 }
 
 const addUserDetailsDb = async (userID, {FirstName, LastName, DateOfBirth, Province, Gender, Facilitator}) =>{
-    const UserDetails = await Pool.query(
+    const UserDetails = await pool.query(
         `INSERT INTO UserDetails(userID, FirstName, LastName, DateOfBirth, Province, Gender, Facilitator)
          VALUES($1, $2, $3, $4, $5, $6, $7)
          RETURNING * `,
